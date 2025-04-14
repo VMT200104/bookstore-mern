@@ -2,7 +2,6 @@ import React from "react";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { clearErrors, myOrders } from "../../actions/orderAction";
-import { useAlert } from "react-alert";
 import MetaData from "../layout/MetaData";
 
 
