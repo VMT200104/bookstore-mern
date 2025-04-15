@@ -1,4 +1,4 @@
-import TryCatch from "../middleware/tryCatch.js";
+import TryCatch from "../middleware/TryCatch.js";
 import Order from "../models/orderModel.js";
 import Product from "../models/productModel.js";
 
