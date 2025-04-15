@@ -15,7 +15,7 @@ export default defineConfig({
     port: 3000,
     proxy: {
       "/api": {
-        target: "http://localhost:5000", // Cổng của backend
+        target: "https://bookstore-mern-lh17.onrender.com", // Cổng của backend
         changeOrigin: true,
         secure: false,
       },
