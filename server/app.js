@@ -20,7 +20,10 @@ app.use(express.json({ limit: '5mb' }));
 app.use(express.urlencoded({ limit: '5mb', extended: true }));  
 app.use(cookieParser());
 app.use(fileUpload({ useTempFiles: true }));
-app.use(cors());
+app.use(cors({
+  origin: "https://bookstore-mern-1-5sr8.onrender.com",
+  credentials: true,
+}));
 
 const port = process.env.PORT;
 
