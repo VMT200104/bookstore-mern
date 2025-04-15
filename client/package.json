@@ -27,7 +27,6 @@
     "@tailwindcss/vite": "^4.1.4",
     "axios": "^1.8.4",
     "class-variance-authority": "^0.7.1",
-    "client": "file:",
     "clsx": "^2.1.1",
     "country-state-city": "^3.2.1",
     "embla-carousel-autoplay": "^8.5.2",
