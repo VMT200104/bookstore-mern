@@ -49,24 +49,29 @@ const ProductReviews = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const [productId, setProductId] = useState("");
+  const [searchType, setSearchType] = useState("id"); // "id" or "name"
+  const [searchValue, setSearchValue] = useState("");
   const [hasSearched, setHasSearched] = useState(false);
   const { error: deleteError, isDeleted } = useSelector((state) => state.review);
   const { error, reviews, loading } = useSelector((state) => state.productReviews);
 
   const deleteReviewHandler = (reviewId) => {
     if (window.confirm("Are you sure you want to delete this review?")) {
-      dispatch(deleteReviews(reviewId, productId));
+      dispatch(deleteReviews(reviewId, searchValue));
     }
   };
 
   const productReviewsSubmitHandler = (e) => {
     e.preventDefault();
-    if (productId.trim()) {
+    if (searchValue.trim()) {
       setHasSearched(true);
-      dispatch(getAllReviews(productId));
+      if (searchType === "id") {
+        dispatch(getAllReviews(searchValue));
+      } else {
+        dispatch(getAllReviews(null, searchValue));
+      }
     } else {
-      toast.error("Please enter a valid product ID");
+      toast.error("Please enter a search value");
     }
   };
 
@@ -86,12 +91,7 @@ const ProductReviews = () => {
       navigate("/admin/reviews");
       dispatch({ type: DELETE_REVIEW_RESET });
     }
-
-    // Only fetch reviews if productId is valid (24 characters) and user has searched
-    if (productId.length === 24 && hasSearched) {
-      dispatch(getAllReviews(productId));
-    }
-  }, [dispatch, error, deleteError, navigate, isDeleted, productId, hasSearched]);
+  }, [dispatch, error, deleteError, navigate, isDeleted]);
 
   return (
     <AdminLayout title="Product Reviews">
@@ -101,28 +101,44 @@ const ProductReviews = () => {
           <CardHeader>
             <CardTitle>Search Product Reviews</CardTitle>
             <CardDescription>
-              Enter a product ID to view its reviews
+              Search reviews by product ID or name
             </CardDescription>
           </CardHeader>
           <CardContent>
             <form onSubmit={productReviewsSubmitHandler} className="space-y-4">
               <div className="flex gap-4">
+                <div className="flex gap-2">
+                  <Button
+                    type="button"
+                    variant={searchType === "id" ? "default" : "outline"}
+                    onClick={() => setSearchType("id")}
+                  >
+                    By ID
+                  </Button>
+                  <Button
+                    type="button"
+                    variant={searchType === "name" ? "default" : "outline"}
+                    onClick={() => setSearchType("name")}
+                  >
+                    By Name
+                  </Button>
+                </div>
                 <div className="relative flex-1">
                   <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
                   <Input
                     type="text"
-                    placeholder="Enter Product ID (24 characters)"
+                    placeholder={searchType === "id" ? "Enter Product ID" : "Enter Product Name"}
                     className="pl-8"
-                    value={productId}
+                    value={searchValue}
                     onChange={(e) => {
-                      setProductId(e.target.value);
+                      setSearchValue(e.target.value);
                       if (hasSearched) setHasSearched(false);
                     }}
                   />
                 </div>
                 <Button
                   type="submit"
-                  disabled={loading || productId.length !== 24}
+                  disabled={loading || !searchValue.trim()}
                   className="min-w-[100px]"
                 >
                   {loading ? (
@@ -138,7 +154,7 @@ const ProductReviews = () => {
                   )}
                 </Button>
               </div>
-              {productId && productId.length !== 24 && (
+              {searchType === "id" && searchValue && searchValue.length !== 24 && (
                 <p className="text-sm text-red-500">
                   Product ID must be exactly 24 characters long
                 </p>

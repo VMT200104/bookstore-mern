@@ -199,7 +199,13 @@ export const createProductReview = TryCatch(async (req, res, next) => {
 });
 
 export const getProductReviews = TryCatch(async (req, res, next) => {
-  const product = await Product.findById(req.query.id);
+  let product;
+  
+  if (req.query.id) {
+    product = await Product.findById(req.query.id);
+  } else if (req.query.name) {
+    product = await Product.findOne({ name: { $regex: req.query.name, $options: 'i' } });
+  }
 
   if (!product) {
     return res.status(404).json({

@@ -184,11 +184,18 @@ export const newReview = (reviewData) => async (dispatch) => {
   }
 };
 
-export const getAllReviews = (id) => async (dispatch) => {
+export const getAllReviews = (id, name) => async (dispatch) => {
   try {
     dispatch({ type: ALL_REVIEW_REQUEST });
 
-    const { data } = await axios.get(`/api/reviews?id=${id}`);
+    let url = '/api/reviews';
+    if (id) {
+      url += `?id=${id}`;
+    } else if (name) {
+      url += `?name=${name}`;
+    }
+
+    const { data } = await axios.get(url);
 
     dispatch({
       type: ALL_REVIEW_SUCCESS,
