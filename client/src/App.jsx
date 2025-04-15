@@ -21,7 +21,7 @@ import UpdateProduct from "./pages/Admin/UpdateProduct";
 import NewProduct from "./pages/Admin/NewProduct";
 import Navbar from "./pages/layout/Navbar";
 import Footer from "./pages/layout/Footer";
-import Home from "./pages/Home/home";
+import Home from "./pages/Home/Home";
 import Products from "./pages/Product/Products";
 import ProductDetails from "./pages/Product/ProductDetails";
 import Cart from "./pages/Cart/Cart";
