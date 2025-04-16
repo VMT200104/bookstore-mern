@@ -57,7 +57,6 @@ export const login = (email, password) => async (dispatch) => {
     );
 
     sessionStorage.setItem("token", data.token);
-    document.cookie = `token=${data.token}; path=/; secure; HttpOnly; SameSite=None`;
 
     dispatch({
       type: LOGIN_SUCCESS,
