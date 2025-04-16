@@ -4,7 +4,7 @@ import Stripe from "stripe";
 
 dotenv.config({ path: "./config/.env" });
 
-const stripe = new Stripe(process.env.STRIPE_API_KEY);
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 export const processPayment = TryCatch(async (req, res, next) => {
   const myPayment = await stripe.paymentIntents.create({
@@ -21,5 +21,5 @@ export const processPayment = TryCatch(async (req, res, next) => {
 });
 
 export const sendStripeApiKey = TryCatch(async (req, res, next) => {
-  res.status(200).json({ stripeApiKey: process.env.STRIPE_SECRET_KEY });
+  res.status(200).json({ stripeApiKey: process.env.STRIPE_PUBLISHABLE_KEY });
 });
