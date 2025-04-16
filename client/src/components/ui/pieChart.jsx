@@ -21,7 +21,7 @@ const PieChartComponent = ({ data }) => {
           className="flex justify-center items-center"
           style={{ height: "100%" }}
         >
-          <PieChart width={300} height={300}>
+          <PieChart width={300} height={350}>
             <Pie
               data={data}
               dataKey="value"
