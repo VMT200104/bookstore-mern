@@ -100,7 +100,8 @@ const Payment = () => {
       }
     } catch (error) {
       payBtn.current.disabled = false;
-      toast.error(error.response.data.message);
+      const errorMsg = error?.response?.data?.message || error.message || "Payment failed";
+      toast.error(errorMsg);
     }
   };
 
