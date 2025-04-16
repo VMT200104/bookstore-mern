@@ -22,7 +22,7 @@ app.use(cookieParser());
 app.use(fileUpload({ useTempFiles: true }));
 app.use(cors({
   origin: [
-    "https://bookstore-mern-1-5sr8.onrender.com",
+    "https://bookstore-mern-livid.vercel.app/",
     "http://localhost:5173"
   ],
   credentials: true,
