@@ -1,8 +1,8 @@
 import { ADD_TO_CART, REMOVE_CART_ITEM, SAVE_SHIPPING_INFO, UPDATE_CART_ITEM, CLEAR_CART } from "@/constans/cartConstants";
-import axios from "axios";
+import axiosInstance from "../utils/axiosConfig";
 
 export const addItemsToCart = (id, quantity) => async (dispatch, getState) => {
-  const { data } = await axios.get(`/api/product/${id}`);
+  const { data } = await axiosInstance.get(`/api/product/${id}`);
 
   dispatch({
     type: ADD_TO_CART,
@@ -38,7 +38,7 @@ export const saveShippingInfo = (data) => async (dispatch) => {
 };
 
 export const updateCartItemQuantity = (id, quantity) => async (dispatch, getState) => {
-  const { data } = await axios.get(`/api/product/${id}`);
+  const { data } = await axiosInstance.get(`/api/product/${id}`);
 
   dispatch({
     type: UPDATE_CART_ITEM,

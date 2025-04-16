@@ -32,7 +32,7 @@ import Shipping from "./pages/Cart/Shipping";
 import ConfirmOrder from "./pages/Cart/ConfirmOrder";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
-import axios from "axios";
+import axiosInstance from "./utils/axiosConfig";
 import MyOrders from "./pages/Order/MyOrders";
 import OrderDetails from "./pages/Order/OrderDetails";
 import OrderList from "./pages/Admin/OrderList";
@@ -49,7 +49,7 @@ const App = () => {
   const [stripeApiKey, setStripeApiKey] = useState("");
 
   async function getStripeApiKey() {
-    const { data } = await axios.get("/api/stripeapikey");
+    const { data } = await axiosInstance.get("/api/stripeapikey");
 
     setStripeApiKey(data.stripeApiKey);
   }

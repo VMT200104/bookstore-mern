@@ -1,8 +1,8 @@
 import { ADD_TO_FAVORITE, REMOVE_FAVORITE_ITEM, FAVORITE_RESET } from "@/constans/favoriteConstants";
-import axios from "axios";
+import axiosInstance from "../utils/axiosConfig";
 
 export const addToFavorite = (id) => async (dispatch, getState) => {
-  const { data } = await axios.get(`/api/product/${id}`);
+  const { data } = await axiosInstance.get(`/api/product/${id}`);
 
   dispatch({
     type: ADD_TO_FAVORITE,
