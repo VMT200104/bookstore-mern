@@ -111,7 +111,7 @@ const Navbar = () => {
             <DropdownMenuTrigger className="flex items-center space-x-3 focus:outline-none">
               <div className="flex items-center space-x-3">
                 <span className="text-gray-700 font-medium hidden md:block">
-                  Hi Tân
+                  {user?.name ? `Hi ${user.name}` : "Hi User"}
                 </span>
                 <div className="relative">
                   <img
