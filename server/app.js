@@ -21,7 +21,7 @@ app.use(express.urlencoded({ limit: '5mb', extended: true }));
 app.use(cookieParser());
 app.use(fileUpload({ useTempFiles: true }));
 app.use(cors({
-  origin: ['http://localhost:5173', 'https://bookstore-mern-1-5sr8.onrender.com', 'https://bookstore-mern-lh17.onrender.com'],
+  origin: "https://bookstore-mern-1-5sr8.onrender.com",
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'token']
