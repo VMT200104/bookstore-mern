@@ -6,6 +6,10 @@ import cloudinary from "cloudinary";
 import fileUpload from "express-fileupload";
 import cookieParser from "cookie-parser";
 import path from "path";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 dotenv.config({ path: "./config/.env" });
 
@@ -42,8 +46,12 @@ app.use("/api", productRoutes);
 app.use("/api", orderRoutes);
 app.use("/api", paymentRoutes);
 
+// Serve static files
+app.use(express.static(path.join(__dirname, "../client/dist")));
+
+// Handle client-side routing
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+  res.sendFile(path.join(__dirname, "../client/dist/index.html"));
 });
 
 app.listen(port, () => {
