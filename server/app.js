@@ -32,10 +32,7 @@ app.use(cors({
 
 const port = process.env.PORT;
 
-app.get("/", (req, res) => {
-  res.send("Server is working");
-});
-
+// API routes
 import userRoutes from "./routes/UserRoute.js";
 import productRoutes from "./routes/productRoute.js";
 import orderRoutes from "./routes/orderRoute.js";
@@ -46,18 +43,13 @@ app.use("/api", productRoutes);
 app.use("/api", orderRoutes);
 app.use("/api", paymentRoutes);
 
-// Serve static files in production
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "../client/dist")));
-  
-  app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "../client/dist/index.html"));
-  });
-} else {
-  app.get("*", (req, res) => {
-    res.send("Server is running in development mode");
-  });
-}
+// Serve static files
+app.use(express.static(path.join(__dirname, "../client/dist")));
+
+// Handle client-side routing
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../client/dist/index.html"));
+});
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
