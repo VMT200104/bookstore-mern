@@ -26,7 +26,7 @@ app.use(express.urlencoded({ limit: '5mb', extended: true }));
 app.use(cookieParser());
 app.use(fileUpload({ useTempFiles: true }));
 app.use(cors({
-  origin: "https://bookstore-mern-1-5sr8.onrender.com",
+  origin: ["https://bookstore-mern-1-5sr8.onrender.com", "http://localhost:3000"],
   credentials: true,
 }));
 
@@ -46,13 +46,18 @@ app.use("/api", productRoutes);
 app.use("/api", orderRoutes);
 app.use("/api", paymentRoutes);
 
-// Serve static files
-app.use(express.static(path.join(__dirname, "../client/dist")));
-
-// Handle client-side routing
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, "../client/dist/index.html"));
-});
+// Serve static files in production
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "../client/dist")));
+  
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "../client/dist/index.html"));
+  });
+} else {
+  app.get("*", (req, res) => {
+    res.send("Server is running in development mode");
+  });
+}
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
