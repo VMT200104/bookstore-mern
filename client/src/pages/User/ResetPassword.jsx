@@ -29,12 +29,12 @@ const ResetPassword = () => {
   const resetPasswordSubmit = (e) => {
     e.preventDefault();
 
-    const myForm = new FormData();
+    const passwords = {
+      password,
+      confirmPassword
+    };
 
-    myForm.set("password", password);
-    myForm.set("confirmPassword", confirmPassword);
-
-    dispatch(resetPassword(token, myForm));
+    dispatch(resetPassword(token, passwords));
   };
 
   useEffect(() => {
@@ -54,7 +54,7 @@ const ResetPassword = () => {
       });
       dispatch(clearErrors());
     }
-  }, [dispatch, success, error, navigate]);
+  }, [dispatch, success, error, navigate, toast]);
 
   return (
     <div className="flex min-h-screen items-center justify-center p-4">

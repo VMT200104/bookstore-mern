@@ -91,8 +91,8 @@ const MyOrders = () => {
                               {order.orderStatus}
                             </Badge>
                           </TableCell>
-                          <TableCell>{order.orderItems.length}</TableCell>
-                          <TableCell>₹{order.totalPrice.toFixed(2)}</TableCell>
+                          <TableCell>{order.orderItems.length+1}</TableCell>
+                          <TableCell>${order.totalPrice.toFixed(2)}</TableCell>
                           <TableCell className="text-right">
                             <Button variant="ghost" size="icon" asChild>
                               <Link to={`/order/${order._id}`}>
