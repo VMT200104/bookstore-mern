@@ -55,7 +55,7 @@ const UpdateProduct = () => {
     "History",
     "Business",
     "Self-Help",
-    "Comics & Manga",
+    "Comics Manga",
     "Foreign Language",
     "Poetry"
   ];
