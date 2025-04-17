@@ -110,7 +110,7 @@ const OrderDetails = () => {
                   <Separator />
                   <div className="flex items-center justify-between">
                     <span className="text-muted-foreground">Total Amount</span>
-                    <span className="font-medium">₹{order?.totalPrice}</span>
+                    <span className="font-medium">${order?.totalPrice}</span>
                   </div>
                 </div>
               </CardContent>
@@ -149,7 +149,7 @@ const OrderDetails = () => {
                         </TableCell>
                         <TableCell>{item.quantity}</TableCell>
                         <TableCell>₹{item.price}</TableCell>
-                        <TableCell className="font-medium">₹{item.price * item.quantity}</TableCell>
+                        <TableCell className="font-medium">${item.price * item.quantity}</TableCell>
                       </TableRow>
                     ))}
                   </TableBody>

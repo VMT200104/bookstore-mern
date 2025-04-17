@@ -4,7 +4,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { clearErrors, myOrders } from "../../actions/orderAction";
 import MetaData from "../layout/MetaData";
 
-
 // Shadcn imports
 import {
   Table,
@@ -48,13 +47,19 @@ const MyOrders = () => {
       <MetaData title={`${user.name} - Orders`} />
 
       {loading ? (
-        <Loader />
+        <div className="flex items-center justify-center min-h-[400px] w-full">
+          <Loader />
+        </div>
       ) : (
         <div className="container mx-auto py-8 px-4">
           <Card>
             <CardHeader>
-              <CardTitle className="text-2xl font-bold">{user.name}'s Orders</CardTitle>
-              <CardDescription>View and manage your order history</CardDescription>
+              <CardTitle className="text-2xl font-bold">
+                {user.name}'s Orders
+              </CardTitle>
+              <CardDescription>
+                View and manage your order history
+              </CardDescription>
             </CardHeader>
             <CardContent>
               <div className="rounded-md border">
@@ -69,27 +74,34 @@ const MyOrders = () => {
                     </TableRow>
                   </TableHeader>
                   <TableBody>
-                    {orders && orders.map((order) => (
-                      <TableRow key={order._id}>
-                        <TableCell className="font-medium">{order._id}</TableCell>
-                        <TableCell>
-                          <Badge 
-                            variant={order.orderStatus === "Delivered" ? "success" : "destructive"}
-                          >
-                            {order.orderStatus}
-                          </Badge>
-                        </TableCell>
-                        <TableCell>{order.orderItems.length}</TableCell>
-                        <TableCell>₹{order.totalPrice.toFixed(2)}</TableCell>
-                        <TableCell className="text-right">
-                          <Button variant="ghost" size="icon" asChild>
-                            <Link to={`/order/${order._id}`}>
-                              <ExternalLink className="h-4 w-4" />
-                            </Link>
-                          </Button>
-                        </TableCell>
-                      </TableRow>
-                    ))}
+                    {orders &&
+                      orders.map((order) => (
+                        <TableRow key={order._id}>
+                          <TableCell className="font-medium">
+                            {order._id}
+                          </TableCell>
+                          <TableCell>
+                            <Badge
+                              variant={
+                                order.orderStatus === "Delivered"
+                                  ? "success"
+                                  : "destructive"
+                              }
+                            >
+                              {order.orderStatus}
+                            </Badge>
+                          </TableCell>
+                          <TableCell>{order.orderItems.length}</TableCell>
+                          <TableCell>₹{order.totalPrice.toFixed(2)}</TableCell>
+                          <TableCell className="text-right">
+                            <Button variant="ghost" size="icon" asChild>
+                              <Link to={`/order/${order._id}`}>
+                                <ExternalLink className="h-4 w-4" />
+                              </Link>
+                            </Button>
+                          </TableCell>
+                        </TableRow>
+                      ))}
                   </TableBody>
                 </Table>
               </div>
