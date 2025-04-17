@@ -115,7 +115,7 @@ export const forgotPassword = TryCatch(async (req, res, next) => {
 
   await user.save({ validateBeforeSave: false });
 
-  const resetLink = `https://bookstore-mern-1-5sr8.onrender.com/password/reset/${resetToken}`;
+  const resetLink = `https://bookstore-mern-lh17.onrender.com/api/password/reset/${resetToken}`;
 
   const emailContent = generateResetEmail(user.name, resetLink);
 
