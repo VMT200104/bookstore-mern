@@ -52,6 +52,29 @@ const RegisterPage = () => {
 
   const registerSubmit = (e) => {
     e.preventDefault();
+
+    // Client-side validation
+    if (!name.trim()) {
+      toast.error("Name is required");
+      return;
+    }
+    if (!email.trim()) {
+      toast.error("Email is required");
+      return;
+    }
+    if (!password.trim()) {
+      toast.error("Password is required");
+      return;
+    }
+    if (password.length < 6) {
+      toast.error("Password must be at least 6 characters");
+      return;
+    }
+    if (!avatar || avatar === "/profile.png") {
+      toast.error("Please select an avatar");
+      return;
+    }
+
     const myForm = new FormData();
     myForm.set("name", name);
     myForm.set("email", email);
