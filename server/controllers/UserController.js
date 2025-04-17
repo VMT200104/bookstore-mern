@@ -115,9 +115,7 @@ export const forgotPassword = TryCatch(async (req, res, next) => {
 
   await user.save({ validateBeforeSave: false });
 
-  const resetLink = `${process.env.FRONTEND_URL}/password/reset/${resetToken}`;
-
-  console.log(resetLink);
+  const resetLink = `https://bookstore-mern-1-5sr8.onrender.com/password/reset/${resetToken}`;
 
   const emailContent = generateResetEmail(user.name, resetLink);
 
