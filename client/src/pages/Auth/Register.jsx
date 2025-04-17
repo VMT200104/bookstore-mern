@@ -7,8 +7,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { register, clearErrors } from "@/actions/userAction";
-import { toast } from "react-toastify";
 import Loader from "@/components/ui/loader";
+import { toast } from "sonner";
 
 const RegisterPage = () => {
   const dispatch = useDispatch();

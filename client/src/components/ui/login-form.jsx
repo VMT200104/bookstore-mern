@@ -7,7 +7,7 @@ import { Label } from "@/components/ui/label";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { login, clearErrors } from "../../actions/userAction";
-import { toast } from "sonner";
+
 import Autoplay from "embla-carousel-autoplay";
 import {
   Carousel,
@@ -15,6 +15,7 @@ import {
   CarouselItem,
 } from "@/components/ui/carousel";
 import Loader from "@/components/ui/loader";
+import { toast } from "sonner";
 
 const LoginForm = ({ className, ...props }) => {
   const dispatch = useDispatch();
@@ -36,7 +37,7 @@ const LoginForm = ({ className, ...props }) => {
 
   useEffect(() => {
     if (error) {
-      // toast.error(error);
+      toast.error(error);
       dispatch(clearErrors());
     }
     if (isAuthenticated) {
