@@ -3,15 +3,15 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Separator } from "@/components/ui/separator";
-import { 
-  BookOpen, 
-  BookmarkIcon, 
-  ShoppingCart, 
-  Heart, 
-  Pencil, 
+import {
+  BookOpen,
+  BookmarkIcon,
+  ShoppingCart,
+  Heart,
+  Pencil,
   BookIcon,
   TrendingUp,
-  Star
+  Star,
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -54,7 +54,9 @@ const ProfileCard = () => {
   return (
     <Fragment>
       {loading ? (
-        <Loader />
+        <div className="flex items-center justify-center w-full h-full">
+          <Loader />
+        </div>
       ) : (
         <Fragment>
           <MetaData title={`${user.name}'s Profile`} />
@@ -66,7 +68,9 @@ const ProfileCard = () => {
                   <div className="relative">
                     <Avatar className="w-32 h-32 mb-4 border-4 border-white shadow-xl transition-transform transform hover:scale-105">
                       <AvatarImage src={user.avatar.url} alt={user.name} />
-                      <AvatarFallback>{user.name.substring(0, 2)}</AvatarFallback>
+                      <AvatarFallback>
+                        {user.name.substring(0, 2)}
+                      </AvatarFallback>
                     </Avatar>
                     <button
                       className="absolute bottom-2 right-2 bg-white p-2 rounded-full shadow-lg hover:bg-gray-200 transition"
@@ -75,8 +79,12 @@ const ProfileCard = () => {
                       <Pencil className="text-gray-700" size={18} />
                     </button>
                   </div>
-                  <h2 className="text-2xl font-bold tracking-wide text-center">{user.name}</h2>
-                  <p className="text-sm opacity-90 mt-1">{user?.role || "Reader"}</p>
+                  <h2 className="text-2xl font-bold tracking-wide text-center">
+                    {user.name}
+                  </h2>
+                  <p className="text-sm opacity-90 mt-1">
+                    {user?.role || "Reader"}
+                  </p>
                 </div>
 
                 <div className="w-full space-y-4 mt-8">
@@ -127,20 +135,32 @@ const ProfileCard = () => {
                   </h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                     <div>
-                      <h4 className="text-sm font-semibold text-gray-600">Full Name</h4>
+                      <h4 className="text-sm font-semibold text-gray-600">
+                        Full Name
+                      </h4>
                       <p className="text-gray-700">{user.name}</p>
                     </div>
                     <div>
-                      <h4 className="text-sm font-semibold text-gray-600">Email</h4>
+                      <h4 className="text-sm font-semibold text-gray-600">
+                        Email
+                      </h4>
                       <p className="text-gray-700">{user?.email}</p>
                     </div>
                     <div>
-                      <h4 className="text-sm font-semibold text-gray-600">Member Since</h4>
-                      <p className="text-gray-700">{String(user.createdAt).substr(0, 10)}</p>
+                      <h4 className="text-sm font-semibold text-gray-600">
+                        Member Since
+                      </h4>
+                      <p className="text-gray-700">
+                        {String(user.createdAt).substr(0, 10)}
+                      </p>
                     </div>
                     <div>
-                      <h4 className="text-sm font-semibold text-gray-600">Reading Goal</h4>
-                      <p className="text-gray-700">{readingStats.readingGoal} books this year</p>
+                      <h4 className="text-sm font-semibold text-gray-600">
+                        Reading Goal
+                      </h4>
+                      <p className="text-gray-700">
+                        {readingStats.readingGoal} books this year
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -149,27 +169,37 @@ const ProfileCard = () => {
 
                 {/* Reading Statistics */}
                 <div>
-                  <h3 className="text-xl font-semibold mb-4 text-gray-800">Reading Statistics</h3>
+                  <h3 className="text-xl font-semibold mb-4 text-gray-800">
+                    Reading Statistics
+                  </h3>
                   <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                     <div className="bg-blue-50 p-4 rounded-lg flex items-center gap-3">
                       <BookIcon className="text-blue-600" size={24} />
                       <div>
                         <p className="text-sm text-gray-600">Books Read</p>
-                        <p className="text-lg font-semibold text-gray-800">{readingStats.booksRead}</p>
+                        <p className="text-lg font-semibold text-gray-800">
+                          {readingStats.booksRead}
+                        </p>
                       </div>
                     </div>
                     <div className="bg-indigo-50 p-4 rounded-lg flex items-center gap-3">
                       <TrendingUp className="text-indigo-600" size={24} />
                       <div>
-                        <p className="text-sm text-gray-600">Currently Reading</p>
-                        <p className="text-lg font-semibold text-gray-800">{readingStats.currentlyReading}</p>
+                        <p className="text-sm text-gray-600">
+                          Currently Reading
+                        </p>
+                        <p className="text-lg font-semibold text-gray-800">
+                          {readingStats.currentlyReading}
+                        </p>
                       </div>
                     </div>
                     <div className="bg-blue-50 p-4 rounded-lg flex items-center gap-3">
                       <Star className="text-blue-600" size={24} />
                       <div>
                         <p className="text-sm text-gray-600">Wishlist</p>
-                        <p className="text-lg font-semibold text-gray-800">{readingStats.wishlist}</p>
+                        <p className="text-lg font-semibold text-gray-800">
+                          {readingStats.wishlist}
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -177,7 +207,9 @@ const ProfileCard = () => {
 
                 {/* Reading Preferences */}
                 <div>
-                  <h3 className="text-xl font-semibold mb-4 text-gray-800">Favorite Genres</h3>
+                  <h3 className="text-xl font-semibold mb-4 text-gray-800">
+                    Favorite Genres
+                  </h3>
                   <div className="flex flex-wrap gap-2">
                     {readingStats.favoriteGenres.map((genre, index) => (
                       <span
