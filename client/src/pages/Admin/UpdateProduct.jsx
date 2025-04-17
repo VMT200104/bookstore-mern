@@ -50,7 +50,7 @@ const UpdateProduct = () => {
     "Non-Fiction",
     "Children's Books",
     "Textbooks",
-    "Science & Technology",
+    "Science Technology",
     "Literature",
     "History",
     "Business",
