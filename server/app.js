@@ -5,6 +5,7 @@ import cors from "cors";
 import cloudinary from "cloudinary";
 import fileUpload from "express-fileupload";
 import cookieParser from "cookie-parser";
+import path from "path";
 
 dotenv.config({ path: "./config/.env" });
 
@@ -21,10 +22,7 @@ app.use(express.urlencoded({ limit: '5mb', extended: true }));
 app.use(cookieParser());
 app.use(fileUpload({ useTempFiles: true }));
 app.use(cors({
-  origin: [
-    "https://bookstore-mern-1-5sr8.onrender.com",
-    "http://localhost:5173"
-  ],
+  origin: "https://bookstore-mern-1-5sr8.onrender.com",
   credentials: true,
 }));
 
@@ -43,6 +41,10 @@ app.use("/api", userRoutes);
 app.use("/api", productRoutes);
 app.use("/api", orderRoutes);
 app.use("/api", paymentRoutes);
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
