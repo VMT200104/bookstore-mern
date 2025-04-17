@@ -18,6 +18,7 @@ import { createOrder, clearErrors } from "../../actions/orderAction";
 import { clearCart } from "../../actions/cartAction";
 import CheckoutSteps from "./CheckoutSteps";
 import MetaData from "../layout/MetaData";
+import axiosInstance from "@/utils/axiosConfig";
 
 const Payment = () => {
   const orderInfo = JSON.parse(sessionStorage.getItem("orderInfo"));
@@ -49,10 +50,12 @@ const Payment = () => {
     payBtn.current.disabled = true;
 
     try {
-      const { data } = await axios.post(
+      const { data } = await axiosInstance.post(
         "/api/payment/process",
         paymentData,
       );
+
+      console.log("data", data);
 
       const client_secret = data.client_secret;
 
