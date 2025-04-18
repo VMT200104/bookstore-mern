@@ -54,7 +54,7 @@ const ResetPassword = () => {
       });
       dispatch(clearErrors());
     }
-  }, [dispatch, success, error, navigate, toast]);
+  }, [dispatch, success, error, navigate]);
 
   return (
     <div className="flex min-h-screen items-center justify-center p-4">
