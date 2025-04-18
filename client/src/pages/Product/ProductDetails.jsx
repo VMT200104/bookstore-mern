@@ -110,7 +110,9 @@ const ProductDetails = () => {
   return (
     <Fragment>
       {loading ? (
-        <Loader />
+        <div className="flex items-center justify-center min-h-[400px] w-full">
+          <Loader />
+        </div>
       ) : (
         <Fragment>
           <MetaData title={`${product.name} -- ECOMMERCE`} />
@@ -137,9 +139,7 @@ const ProductDetails = () => {
                 </div>
 
                 <div className="flex items-center space-x-2">
-                  <div className="flex">
-                    {renderStars(product.ratings)}
-                  </div>
+                  <div className="flex">{renderStars(product.ratings)}</div>
                   <span className="text-gray-500">
                     ({product.numOfReviews} Reviews)
                   </span>
@@ -147,7 +147,7 @@ const ProductDetails = () => {
 
                 <div className="space-y-4">
                   <h2 className="text-2xl font-bold">${product.price}</h2>
-                  
+
                   <div className="flex items-center space-x-4">
                     <div className="flex items-center border rounded-md">
                       <Button
