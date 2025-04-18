@@ -166,7 +166,9 @@ const OrderList = () => {
                       {order.orderStatus}
                     </Badge>
                   </TableCell>
-                  <TableCell>{order.orderItems.length} items</TableCell>
+                  <TableCell>
+                    {order.orderItems.reduce((total, item) => total + item.quantity, 0)} items
+                  </TableCell>
                   <TableCell>{formatPrice(order.totalPrice)}</TableCell>
                   <TableCell className="text-right">
                     <DropdownMenu>
